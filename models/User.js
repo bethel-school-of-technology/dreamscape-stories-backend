@@ -8,7 +8,7 @@ var UserSchema = new mongoose.Schema({
     username: {type: String, unique: true, required: [true, "cannot be empty."], lowercase: true, index: true},
     email: {type: String, unique: true, required: [true, "cannot be empty."], lowercase: true, index: true},
     bio: String,
-    image: String,
+    image: String,//string here?
     salt: String,
     hash: String
 }, {timestamps: true});
@@ -41,3 +41,5 @@ UserSchema.methods.toAuthJSON = function(){
         token: this.generateJWT()
     };
 };
+
+mongoose.model('User', UserSchema);
