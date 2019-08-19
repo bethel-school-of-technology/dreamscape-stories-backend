@@ -4,6 +4,7 @@ var crypto = require('crypto');
 var jwt = require('jsonwebtoken'); //optional security measure right? this will be a stretch goal perhaps.
 var secret = require('../config').secret;
 
+//PASSWORD AND PASSWORD AUTH AND JSON SECURITY TOKEN CREATION
 var UserSchema = new mongoose.Schema({
     username: {type: String, unique: true, required: [true, "cannot be empty."], lowercase: true, index: true},
     email: {type: String, unique: true, required: [true, "cannot be empty."], lowercase: true, index: true},
