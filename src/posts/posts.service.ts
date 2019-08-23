@@ -16,4 +16,7 @@ export class postsService {
   async findAll(): Promise<post[]> {
     return await this.postModel.find().exec();
   }
+  async delete(id: number): Promise<post> {
+    return await this.postModel.findbyIdAndRemove(id);
+  }
 }
