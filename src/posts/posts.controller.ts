@@ -11,7 +11,7 @@ export class PostsController {
         return `Content: ${createPostDto.content}`;
     }
     @Get()
-    findAll(): Posts[] {
+    async findAll(): Promise<Posts[]> {
     return this.postsService.findAll();
   }
 }
