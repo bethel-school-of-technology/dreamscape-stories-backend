@@ -1,19 +1,19 @@
-import { Injectable } from '@nestjs/common';
-import { Posts } from './interfaces/post.interface';
 import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose'
-import { CreatePostDto } from './dto/create-post.dto';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { post } from './interfaces/post.interface';
+import { CreatepostDto } from './dto/create-post.dto';
 
 @Injectable()
-export class PostsService {
-  constructor(@InjectModel('Post') private readonly postModel: Model<Posts>) {}
+export class postsService {
+  constructor(@InjectModel('post') private readonly postModel: Model<post>) {}
 
-  async create(createCatDto: CreatePostDto): Promise<Posts> {
-    const createdPost = new this.postModel(createCatDto);
-    return await createdPost.save();
+  async create(createpostDto: CreatepostDto): Promise<post> {
+    const createdpost = new this.postModel(createpostDto);
+    return await createdpost.save();
   }
 
-  async findAll(): Promise<Posts[]> {
+  async findAll(): Promise<post[]> {
     return await this.postModel.find().exec();
   }
 }

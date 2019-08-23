@@ -1,18 +1,19 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { PostsController } from './posts.controller';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { CreatepostDto } from './dto/create-post.dto';
+import { postsService } from './posts.service';
+import { post } from './interfaces/post.interface';
 
-describe('Posts Controller', () => {
-  let controller: PostsController;
+@Controller('posts')
+export class postsController {
+  constructor(private readonly postsService: postsService) {}
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [PostsController],
-    }).compile();
+  @Post()
+  async create(@Body() createpostDto: CreatepostDto) {
+    await this.postsService.create(createpostDto);
+  }
 
-    controller = module.get<PostsController>(PostsController);
-  });
-
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
-});
+  @Get()
+  async findAll(): Promise<post[]> {
+    return this.postsService.findAll();
+  }
+}

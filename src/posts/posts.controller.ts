@@ -1,17 +1,19 @@
-import { Controller, Get, Query, Post, Body, Put, Param, Delete } from '@nestjs/common';
-import { CreatePostDto } from './dto/create-post.dto';
-import { PostsService } from './posts.service';
-import { Posts } from './interfaces/post.interface';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { CreatepostDto } from './dto/create-post.dto';
+import { postsService } from './posts.service';
+import { post } from './interfaces/post.interface';
 
 @Controller('posts')
-export class PostsController {
-    constructor(private readonly postsService: PostsService) {}
-    @Post()
-    create(@Body()createPostDto: CreatePostDto):string {
-        return `Content: ${createPostDto.content}`;
-    }
-    @Get()
-    async findAll(): Promise<Posts[]> {
+export class postsController {
+  constructor(private readonly postsService: postsService) {}
+
+  @Post()
+  async create(@Body() createpostDto: CreatepostDto) {
+    await this.postsService.create(createpostDto);
+  }
+
+  @Get()
+  async findAll(): Promise<post[]> {
     return this.postsService.findAll();
   }
 }
