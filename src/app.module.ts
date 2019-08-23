@@ -17,8 +17,7 @@ import config from './config/keys'
     postsController
   ],
   providers: [
-    AppService,
-    postsService
+    AppService
   ]
 })
 export class AppModule {}
