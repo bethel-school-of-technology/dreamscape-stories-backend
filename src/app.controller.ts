@@ -1,7 +1,7 @@
 import { Controller, Get, Request, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AppService } from './app.service';
-
+import { AuthService } from './auth/auth.service';
 /* old code in tact starting here
 
 import { Controller, Get, Post, UseGuards } from '@nestjs/common';
@@ -20,7 +20,8 @@ export class AppController {
 
 @Controller('api')
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor(private readonly appService: AppService,
+    private readonly authService: AuthService) { }
 
   @Get()
   getHello(): string {
@@ -29,10 +30,12 @@ export class AppController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
   async login(@Request() req) {
-    return req.user
-
-
-      ;
+    return this.authService.login(req.user);
+}
+@UseGuards(AuthGuard('jwt'))
+  @Get('me')
+  getProfile(@Request() req) {
+    return req.user;
   }
 }
 
