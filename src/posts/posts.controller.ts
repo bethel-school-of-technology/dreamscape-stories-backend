@@ -7,12 +7,12 @@ import { post } from './interfaces/post.interface';
 export class postsController {
   constructor(private readonly postsService: postsService) {}
 
-  @Post()
+  @Post('post')
   async create(@Body() createpostDto: CreatepostDto):Promise<post> {
     return this.postsService.create(createpostDto);
   }
 
-  @Get()
+  @Get('posts')
   async findAll(): Promise<post[]> {
     return this.postsService.findAll();
   }
