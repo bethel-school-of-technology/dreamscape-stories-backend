@@ -9,7 +9,6 @@ import { UsersModule } from './users/users.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import config from './config/keys'
-import {HttpModule} from '@nestjs/common';
 
 @Module({
   imports: [
@@ -18,7 +17,6 @@ import {HttpModule} from '@nestjs/common';
     postsModule,
     AuthModule,
     UsersModule,
-    HttpModule,
   ],
   controllers: [
     AppController,
