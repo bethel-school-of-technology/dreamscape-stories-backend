@@ -16,7 +16,9 @@ export class DreamsService {
   async findAll(): Promise<Dream[]> {
     return await this.dreamModel.find().exec();
   }
-  async delete(id: number): Promise<Dream> {
-    return await this.dreamModel.findbyIdAndRemove(id);
-  }
+  async deletedream(dreamID): Promise<any> {
+    const deleteddream = await this.dreamModel
+        .findByIdAndRemove(dreamID);
+    return deleteddream;
+}
 }
